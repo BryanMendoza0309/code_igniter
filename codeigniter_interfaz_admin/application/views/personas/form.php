@@ -17,6 +17,14 @@
         <title>Hello, world!</title>
         
     </head>
+    <style>
+        .asterRed{
+            color:red;
+        };
+        .asterBlue{
+            color:blue;
+        }
+    </style>
     <body>
         <div class="page">
             <!--<div style="z-index: 2100;" class="fixed-top ml-3 mt-3">
@@ -60,7 +68,7 @@
                                     <div class="card-body">
                                         <div class="form-row">
                                           <div class="form-group col-6">
-                                                <label for="cedula">Cedula</label>
+                                                <label for="cedula">Cedula</label> <span  style="color: red;">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" maxlength="10" class="soloNumeros form-control" id="txtcedula">
                                                     <div class="input-group-append">
@@ -71,7 +79,7 @@
                                           </div>
                                           <div class="form-group col-6"></div>
                                           <div class="form-group col-6">
-                                                <label for="apellido">Apellidos</label>
+                                                <label for="apellido">Apellidos</label> <span  style="color: red;">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" id="txtapellido">
                                                     <div class="input-group-append">
@@ -81,7 +89,7 @@
                                                 <div style="display:none;" id="errorApellido" class="alert alert-danger" role="alert"></div>
                                           </div>
                                           <div class="form-group col-6">
-                                                <label for="nombre">Nombres</label>
+                                                <label for="nombre">Nombres</label> <span  style="color: red;">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" id="txtnombre">
                                                     <div class="input-group-append">
@@ -93,7 +101,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-4">
-                                                <label for="genero">Genero</label>
+                                                <label for="genero">Genero</label> <span  style="color: red;">*</span></label>
                                                 <select class="form-control" id="selectGenero">
                                                   <option value="" disabled selected>Seleccionar...</option>
                                                   <option value="Hombre">Hombre</option>
@@ -102,7 +110,7 @@
                                                 <div style="display:none;" id="errorGenero" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="genero">Estado Civil</label>
+                                                <label for="genero">Estado Civil</label> <span  style="color: red;">*</span></label>
                                                 <select class="form-control" id="selectEstCivil">
                                                   <option value="" disabled selected>Seleccionar...</option>
                                                   <option value="Soltero/A">Soltero/A</option>
@@ -113,7 +121,7 @@
                                                 <div style="display:none;" id="errorEstCivil" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="fNacimiento">Fecha de Nacimiento</label>
+                                                <label for="fNacimiento">Fecha de Nacimiento</label> <span  style="color: red;">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" readonly class="form-control datepicker" id="txtedad">
                                                     <div class="input-group-append">
@@ -134,7 +142,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="celular">Celular 1</label>
+                                                <label for="celular">Celular 1</label> <span  style="color: red;">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" maxlength="10" class="soloNumeros form-control" id="txtcel1">
                                                     <div class="input-group-append">
@@ -154,7 +162,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                          <label for="email">Email</label>
+                                          <label for="email">Email</label> <span  style="color: red;">*</span></label>
                                           <div class="input-group">
                                                 <input type="text" class="form-control" id="txtemail">
                                                 <div class="input-group-append">
@@ -171,7 +179,7 @@
 
                                         <div class="form-row">
                                             <div class="form-group col-4">
-                                                <label for="genero">Nacionalidad</label>
+                                                <label for="genero">Nacionalidad</label> <span  style="color: red;">*</span></label>
                                                 <select class="form-control" id="selectNacionalidad">
                                                   <option value="" disabled selected>Seleccionar...</option>
                                                   <option value="Ecuatoriana">Ecuatoriana</option>
@@ -180,7 +188,7 @@
                                                 <div style="display:none;" id="errorNacionalidad" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-8">
-                                                <label for="direccion">Dirección</label>
+                                                <label for="direccion">Dirección</label> <span  style="color: red;">*</span></label>
                                                 <div class="input-group">
                                                         <input type="text" class="form-control" id="txtdireccion">
                                                         <div class="input-group-append">
@@ -190,7 +198,7 @@
                                                 <div style="display:none;" id="errorDireccion" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-6">
-                                                <label for="canton">Cantón</label>
+                                                <label for="canton">Cantón</label> <span  style="color: red;">*</span></label>
                                                 <select style="width:100%;" id="selectProvincia" class="form-control">
                                                     <option value="" disabled selected>Seleccionar...</option>
                                                     <?php foreach ($cantones as $canton): ?>
@@ -200,7 +208,7 @@
                                                 <div style="display:none;" id="errorCanton" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-6">
-                                                <label for="parroquia">Parroquia</label>
+                                                <label for="parroquia">Parroquia</label> <span  style="color: red;">*</span></label>
                                                 <select style="width:100%;" id="selectParroquia" class="form-control">
                                                     <option value="" disabled selected>Seleccionar...</option>
                                                 </select>
@@ -231,7 +239,7 @@
                                     <div class="card-body">
                                         <div class="form-row">
                                           <div class="form-group col-6">
-                                                <label for="NEducativo">Nivel Educativo</label>
+                                                <label for="NEducativo">Nivel Educativo</label> <span  style="color: red;">*</span></label>
                                                 <select class="form-control" id="txtneducativo">
                                                   <option value="" disabled selected>Seleccionar...</option>
                                                   <option value="Básica Elemental">Básica Elemental</option>
@@ -244,7 +252,7 @@
                                                 <div style="display:none;" id="errorNvelEducativo" class="alert alert-danger" role="alert"></div>
                                           </div>
                                           <div class="form-group col-6">
-                                            <label for="inputEmail4">Titulo Obtenido</label>
+                                            <label for="inputEmail4">Titulo Obtenido</label> <span  style="color: red;">*</span></label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="txttloobtenido">
                                                 <div class="input-group-append">
@@ -278,7 +286,7 @@
                                     <div class="card-body">
                                         <div class="form-row">
                                             <div class="form-group col-4">
-                                                <label for="EntBancaria">Entidad Bancaria</label>
+                                                <label for="EntBancaria">Entidad Bancaria</label> <span  style="color: red;">*</span></label>
                                                 <select class="form-control" id="selectEntBancaria">
                                                   <option value="" disabled selected>Seleccionar...</option>
                                                   <option value="Banco">Banco</option>
@@ -287,7 +295,7 @@
                                                 <div style="display:none;" id="errorEntBancaria" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="TpoCuenta">Tipo de Cuenta</label>
+                                                <label for="TpoCuenta">Tipo de Cuenta</label> <span  style="color: red;">*</span></label>
                                                 <select class="form-control" id="selectTpoCuenta">
                                                   <option value="" disabled selected>Seleccionar...</option>
                                                   <option value="Cuenta de Ahorro">Cuenta de Ahorro</option>
@@ -296,7 +304,7 @@
                                                 <div style="display:none;" id="errorTpoCuenta" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="NoCuenta">No. de Cuenta</label>
+                                                <label for="NoCuenta">No. de Cuenta</label> <span  style="color: red;">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" class="soloNumeros form-control" id="txtnocuenta">
                                                     <div class="input-group-append">
@@ -330,7 +338,7 @@
                                     <div class="card-body">
                                         <div class="form-row">
                                           <div class="form-group col-4">
-                                                <label for="genero">Discapacidad</label>
+                                                <label for="genero">Discapacidad</label> <span  class="asterRed">*</span></label>
                                                 <select class="form-control" id="selectDiscapacidad">
                                                   <option value="" disabled selected>Seleccionar...</option>
                                                   <option value="si">Si</option>
@@ -338,9 +346,9 @@
                                                 </select>
                                           </div>
                                           <div class="form-group col-4">
-                                            <label for="inputEmail4">Porcentaje</label>
+                                            <label for="inputEmail4">Porcentaje</label> <span id="asterisco1" style="color: red;">*</span>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="txtporcentaje">
+                                                <input type="text" class="form-control" id="txtporcentaje"> 
                                                 <div class="input-group-append">
                                                     <span class="input-group-text"><i class="fa fa-sort-numeric-desc"></i></span>
                                                 </div>
@@ -348,7 +356,7 @@
                                             <div style="display:none;" id="errorPorcentaje" class="alert alert-danger" role="alert"></div>
                                           </div>
                                           <div class="form-group col-4">
-                                            <label for="inputEmail4">Num. Conadis</label>
+                                            <label for="inputEmail4">Num. Conadis</label> <span id="asterisco2" style="color: red;">*</span>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" id="txtnoconadis">
                                                 <div class="input-group-append">
@@ -372,7 +380,7 @@
                                     <div class="card-header"><h3>Carga de documentos</h3></div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="archivo">Cargar Archivo</label>
+                                            <label for="archivo">Cargar Archivo</label> <span  style="color: red;">*</span></label>
                                             <input type="file" class="form-control" name="archivo" id="archivo">
                                         </div>
                                         <div style="display:none;" id="errorArchivo" class="alert alert-danger" role="alert"></div>
@@ -514,6 +522,12 @@
         <script src="<?php echo base_url();?>bower_components/select2/dist/js/i18n/es.js"></script>
         <script>
             jQuery(document).ready(function($){
+                $('.datepicker').datepicker({
+                    format: 'dd/mm/yyyy',
+                    endDate: '-18y', // Restringe las fechas a personas mayores de 18 años
+                    language: 'es', // Establece el idioma del selector de fechas
+                    autoclose: true // Cierra automáticamente el selector después de seleccionar una fecha
+                });
                 $('#selectProvincia').select2();
                 $('#selectParroquia').select2();
 
@@ -581,6 +595,9 @@
                 var optionSelected;
                 document.getElementById('selectDiscapacidad').addEventListener('change', function() {
                      optionSelected = this.value;
+                    // Selecciona el elemento del asterisco
+                    var asterisco1 = document.getElementById('asterisco1');
+                    var asterisco2 = document.getElementById('asterisco2');
                     var porcentajeInput = document.getElementById('txtporcentaje');
                     var noConadisInput = document.getElementById('txtnoconadis');
 
@@ -589,10 +606,13 @@
                         noConadisInput.value = '';
                         porcentajeInput.disabled = true;
                         noConadisInput.disabled = true;
-                        
+                        asterisco1.style.color = 'white';
+                        asterisco2.style.color = 'white';
                     } else {
                         porcentajeInput.disabled = false;
                         noConadisInput.disabled = false;
+                        asterisco1.style.color = 'red';
+                        asterisco2.style.color = 'red';
                     }
                 });
                 
