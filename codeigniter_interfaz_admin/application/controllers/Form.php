@@ -259,7 +259,7 @@ class Form extends CI_Controller {
                 "username"=>$cedula,
                 "nombres"=>$nombre,
                 "apellidos"=>$apellido,
-                "password"=>$this->hashpass($cedula),
+                "password"=>md5($cedula),
                 "tpo_usuario"=>'usuario',
                 "tbl_empleado_idtbl_empleado"=>$id_empleado
             );

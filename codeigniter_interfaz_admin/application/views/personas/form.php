@@ -400,7 +400,7 @@
                                     <h6><b>Want more?</b> Exclusive deals, the latest news: Our Newsletter</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <button type="button" class="btn btn-outline-info ">Sign UP</button>
+                                    <a href="<?php echo base_url(); ?>usuario" type="button" class="btn btn-outline-info ">Sign UP</a>
                                 </li>
                             </ul>
 

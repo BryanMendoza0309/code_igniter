@@ -43,7 +43,7 @@
 						</div>
 						<!-- /.col -->
 					</div>
-					<div id="rstbtn_login"></div>
+					<div id="rstLogin" style="margin-top: 15px; display:none;" class="callout callout-danger text-center"><p id="errorUsuario"></p></div>
 				</form>
 				
 			</div>
@@ -56,39 +56,42 @@
 		<!-- Bootstrap 3.3.7 -->
 		<script src="<?php echo base_url();?>assets/template/bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
-			//var base_url = window.location.origin;
-
-			//var host = window.location.host;
-
-			//var pathArray = window.location.pathname.split( '/' );
-			//var baseurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-			//var baseurl = window.location.origin + window.location.pathname + 'auth/login';
-			//alert("<?php echo base_url(); ?>" + 'auth/login' + baseurl + 'auth/login');
 			$(document).ready(function() {
-				var baseurl = window.location.origin + window.location.pathname + 'auth/login';
 				$('#username').on('input', function (e) {
 					if (!/^[a-z0-9áéíóúüñ_]*$/i.test(this.value)){
 						this.value = this.value.replace(/[^a-z0-9áéíóúüñ]+/ig,"");
 					}
 				});
-				var base_urld = $("#urlbase").text();
+				
 				$('#btn-primary').click(function(){
 					var var_username = $("#username").val();
 					var var_password = $("#password").val();
 					if(var_username!="" && var_password!=""){
 						$.ajax({
-							method: 'POST',
+							method:"POST",
+							url: '<?php echo base_url(); ?>login/auth',
+							dataType: 'json',
 							data: new FormData(form_login),
-							url: '<?php echo base_url(); ?>auth/login',
-							success: function(data) {
-								$("#rstbtn_login").html(data);
-								if (data == "yes")
-                           			window.location.href = '<?php echo base_url(); ?>dashboard';
-                        		else if (data == "no")
-                            		$('#rstbtn_login').html('<br><div class="callout callout-danger text-center"><p>El usuario y/o contraseña son incorrestos.</p></div>');
-                        		else
-                           	 		$('#rstbtn_login').html('<br><div class="callout callout-danger">' + data + '</div>');
-							},xhr: function(){ 
+							contentType:false,
+							cache:false,
+							processData:false,
+							success: function (response) {
+								// Maneja la respuesta del servidor (puede ser un mensaje de éxito, error, etc.)
+								//console.log(response.mensaje.err);
+								if (response.error) {
+									console.log(response.mensaje.err);
+									// Muestra los mensajes de error en tu interfaz
+									if (response.mensaje.err !== undefined) {
+										$('#errorUsuario').text(response.mensaje.err);
+										$('#rstLogin').show();
+									}
+								} else {
+									// Si no hay errores, puedes hacer algo más, por ejemplo, redirigir o mostrar un mensaje de éxito
+									console.log('Formulario procesado con éxito');
+									window.location.href = response.mensaje.url;
+								}
+							},
+							xhr: function(){ 
 								// get the native XmlHttpRequest object 
 								var xhr = $.ajaxSettings.xhr() ; 
 								// set the onload event handler 
@@ -97,9 +100,9 @@
 								}; 
 								return xhr; 
 							},
-							cache: false,
-							contentType: false,
-							processData: false
+							error: function (error) {
+								console.error("Error al procesar el formulario: ", error);
+							}
 						});
 					}else{
 						alert("No se permiten campos vacios");
