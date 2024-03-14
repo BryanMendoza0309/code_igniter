@@ -29,9 +29,9 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                   <i class="fas fa-plus"></i> Añadir
                 </button>
             </div>-->
-            <a href="../../" class="home-btn">
+            <!--<a href="../../" class="home-btn">
                 <i style="font-size: 2em; color: #ffffff;" class="fa fa-home"></i>
-            </a>
+            </a>-->
             <div id="header-box">
                 <div class="container center-both">
                     <img class="img-fluid" src="https://www.cne.gob.ec/wp-content/uploads/2023/02/CNElogoveb-1-e1708103327478.png" alt="Logo" style="width:166px;">
@@ -67,12 +67,12 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                           <div class="form-group col-6">
                                                 <label for="cedula">Cedula</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="txtcedula">
+                                                    <input type="text" class="soloNumeros form-control" id="txtcedula">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-sort-numeric-desc"></i></span>
                                                     </div>
                                                 </div>
-                                                <div id="errorCedula" class="alert alert-danger" role="alert"></div>
+                                                <div style="display:none;" id="errorCedula" class="alert alert-danger" role="alert"></div>
                                           </div>
                                           <div class="form-group col-6"></div>
                                           <div class="form-group col-6">
@@ -83,6 +83,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                                                     </div>
                                                 </div>
+                                                <div style="display:none;" id="errorApellido" class="alert alert-danger" role="alert"></div>
                                           </div>
                                           <div class="form-group col-6">
                                                 <label for="nombre">Nombres</label>
@@ -92,42 +93,46 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                                                     </div>
                                                 </div>
+                                                <div style="display:none;" id="errorNombre" class="alert alert-danger" role="alert"></div>
                                           </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-4">
                                                 <label for="genero">Genero</label>
                                                 <select class="form-control" id="selectGenero">
-                                                  <option disabled selected>Seleccionar...</option>
-                                                  <option>Hombre</option>
-                                                  <option>Mujer</option>
+                                                  <option value="" disabled selected>Seleccionar...</option>
+                                                  <option value="Hombre">Hombre</option>
+                                                  <option value="Mujer">Mujer</option>
                                                 </select>
+                                                <div style="display:none;" id="errorGenero" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
                                                 <label for="genero">Estado Civil</label>
                                                 <select class="form-control" id="selectEstCivil">
-                                                  <option disabled selected>Seleccionar...</option>
-                                                  <option>Soltero/A</option>
-                                                  <option>Casado/A</option>
-                                                  <option>Divorciado/A</option>
-                                                  <option>Union de Hecho/A</option>
+                                                  <option value="" disabled selected>Seleccionar...</option>
+                                                  <option value="Soltero/A">Soltero/A</option>
+                                                  <option value="Casado/A">Casado/A</option>
+                                                  <option value="Divorciado/A">Divorciado/A</option>
+                                                  <option value="Union de Hecho/A">Union de Hecho/A</option>
                                                 </select>
+                                                <div style="display:none;" id="errorEstCivil" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
                                                 <label for="fNacimiento">Fecha de Nacimiento</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control datepicker" id="txtedad">
+                                                    <input type="text" readonly class="form-control datepicker" id="txtedad">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
+                                                <div style="display:none;" id="errorFNacimiento" class="alert alert-danger" role="alert"></div>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-4">
                                                 <label for="telefono">Telefono</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="txttelefono">
+                                                    <input type="text" class="soloNumeros form-control" id="txttelefono">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-phone"></i></span>
                                                     </div>
@@ -136,16 +141,17 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                             <div class="form-group col-4">
                                                 <label for="celular">Celular 1</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="txtcel1">
+                                                    <input type="text" class="soloNumeros form-control" id="txtcel1">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-mobile"></i></span>
                                                     </div>
                                                 </div>
+                                                <div style="display:none;" id="errorMovil" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
                                                 <label for="celular">Celular 2</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="txtcel2">
+                                                    <input type="text" class="soloNumeros form-control" id="txtcel2">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-mobile"></i></span>
                                                     </div>
@@ -160,6 +166,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                                     <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
                                                 </div>
                                            </div>
+                                           <div style="display:none;" id="errorEmail" class="alert alert-danger" role="alert"></div>
                                         </div>
 
                                         <div class="divider divider-border divider-center divider-color">
@@ -171,10 +178,11 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                             <div class="form-group col-4">
                                                 <label for="genero">Nacionalidad</label>
                                                 <select class="form-control" id="selectNacionalidad">
-                                                  <option disabled selected>Seleccionar...</option>
-                                                  <option>Ecuatoriana</option>
-                                                  <option>Extranjera</option>
+                                                  <option value="" disabled selected>Seleccionar...</option>
+                                                  <option value="Ecuatoriana">Ecuatoriana</option>
+                                                  <option value="Extranjera">Extranjera</option>
                                                 </select>
+                                                <div style="display:none;" id="errorNacionalidad" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-8">
                                                 <label for="direccion">Dirección</label>
@@ -184,21 +192,24 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                                             <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
                                                         </div>
                                                 </div>
+                                                <div style="display:none;" id="errorDireccion" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-6">
                                                 <label for="canton">Cantón</label>
                                                 <select style="width:100%;" id="selectProvincia" class="form-control">
-                                                    <option disabled selected>Seleccionar...</option>
+                                                    <option value="" disabled selected>Seleccionar...</option>
                                                     <?php foreach ($cantones as $canton): ?>
                                                         <option value="<?= $canton['id']; ?>"><?= $canton['canton']; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
+                                                <div style="display:none;" id="errorCanton" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-6">
                                                 <label for="parroquia">Parroquia</label>
                                                 <select style="width:100%;" id="selectParroquia" class="form-control">
-                                                    <option disabled selected>Seleccionar...</option>
+                                                    <option value="" disabled selected>Seleccionar...</option>
                                                 </select>
+                                                <div style="display:none;" id="errorParroquia" class="alert alert-danger" role="alert"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -227,14 +238,15 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                           <div class="form-group col-6">
                                                 <label for="NEducativo">Nivel Educativo</label>
                                                 <select class="form-control" id="txtneducativo">
-                                                  <option disabled selected>Seleccionar...</option>
-                                                  <option>Básica Elemental</option>
-                                                  <option>Bachillerato</option>
-                                                  <option>Técnico</option>
-                                                  <option>Tecnológico</option>
-                                                  <option>Tercer Nivel</option>
-                                                  <option>Cuarto Nivel</option>
+                                                  <option value="" disabled selected>Seleccionar...</option>
+                                                  <option value="Básica Elemental">Básica Elemental</option>
+                                                  <option value="Bachillerato">Bachillerato</option>
+                                                  <option value="Técnico">Técnico</option>
+                                                  <option value="Tecnológico">Tecnológico</option>
+                                                  <option value="Tercer Nivel">Tercer Nivel</option>
+                                                  <option value="Cuarto Nivel">Cuarto Nivel</option>
                                                 </select>
+                                                <div style="display:none;" id="errorNvelEducativo" class="alert alert-danger" role="alert"></div>
                                           </div>
                                           <div class="form-group col-6">
                                             <label for="inputEmail4">Titulo Obtenido</label>
@@ -244,6 +256,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                                     <span class="input-group-text"><i class="fa fa-file"></i></span>
                                                 </div>
                                             </div>
+                                            <div style="display:none;" id="errorTloObtenido" class="alert alert-danger" role="alert"></div>
                                           </div>
                                         </div>
                                     </div>
@@ -270,29 +283,32 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                     <div class="card-body">
                                         <div class="form-row">
                                             <div class="form-group col-4">
-                                                <label for="genero">Entidad Bancaria</label>
-                                                <select class="form-control" id="selectGenero">
-                                                  <option disabled selected>Seleccionar...</option>
-                                                  <option>Banco</option>
-                                                  <option>Cooperativa</option>
+                                                <label for="EntBancaria">Entidad Bancaria</label>
+                                                <select class="form-control" id="selectEntBancaria">
+                                                  <option value="" disabled selected>Seleccionar...</option>
+                                                  <option value="Banco">Banco</option>
+                                                  <option value="Cooperativa">Cooperativa</option>
                                                 </select>
+                                                <div style="display:none;" id="errorEntBancaria" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="genero">Tipo de Cuenta</label>
-                                                <select class="form-control" id="selectGenero">
-                                                  <option disabled selected>Seleccionar...</option>
-                                                  <option>Cuenta de Ahorro</option>
-                                                  <option>Cuenta Corriente</option>
+                                                <label for="TpoCuenta">Tipo de Cuenta</label>
+                                                <select class="form-control" id="selectTpoCuenta">
+                                                  <option value="" disabled selected>Seleccionar...</option>
+                                                  <option value="Cuenta de Ahorro">Cuenta de Ahorro</option>
+                                                  <option value="Cuenta Corriente">Cuenta Corriente</option>
                                                 </select>
+                                                <div style="display:none;" id="errorTpoCuenta" class="alert alert-danger" role="alert"></div>
                                             </div>
                                             <div class="form-group col-4">
-                                                <label for="genero">No. de Cuenta</label>
+                                                <label for="NoCuenta">No. de Cuenta</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="txtnocuenta">
+                                                    <input type="text" class="soloNumeros form-control" id="txtnocuenta">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-sort-numeric-desc"></i></span>
                                                     </div>
                                                 </div>
+                                                <div style="display:none;" id="errorNoCuenta" class="alert alert-danger" role="alert"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -320,10 +336,10 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                         <div class="form-row">
                                           <div class="form-group col-4">
                                                 <label for="genero">Discapacidad</label>
-                                                <select class="form-control" id="selectGenero">
-                                                  <option disabled selected>Seleccionar...</option>
-                                                  <option>Si</option>
-                                                  <option>No</option>
+                                                <select class="form-control" id="selectDiscapacidad">
+                                                  <option value="" disabled selected>Seleccionar...</option>
+                                                  <option value="si">Si</option>
+                                                  <option value="no">No</option>
                                                 </select>
                                           </div>
                                           <div class="form-group col-4">
@@ -334,6 +350,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                                     <span class="input-group-text"><i class="fa fa-sort-numeric-desc"></i></span>
                                                 </div>
                                             </div>
+                                            <div style="display:none;" id="errorPorcentaje" class="alert alert-danger" role="alert"></div>
                                           </div>
                                           <div class="form-group col-4">
                                             <label for="inputEmail4">Num. Conadis</label>
@@ -343,6 +360,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                                     <span class="input-group-text"><i class="fa fa-sort-numeric-desc"></i></span>
                                                 </div>
                                             </div>
+                                            <div style="display:none;" id="errorNoConadis" class="alert alert-danger" role="alert"></div>
                                           </div>
                                         </div>
                                     </div>
@@ -362,6 +380,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                             <label for="archivo">Cargar Archivo</label>
                                             <input type="file" class="form-control" name="archivo" id="archivo">
                                         </div>
+                                        <div style="display:none;" id="errorArchivo" class="alert alert-danger" role="alert"></div>
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +406,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                                     <h6><b>Want more?</b> Exclusive deals, the latest news: Our Newsletter</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <button type="button" class="btn btn-outline-info ">Sign UP</button>
+                                    <a href="<?php echo base_url(); ?>usuario" type="button" class="btn btn-outline-info ">Sign UP</a>
                                 </li>
                             </ul>
 
@@ -483,7 +502,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                 </div>
             </section>
         </div>
-
+</body>
         <!-- Optional JavaScript; choose one of the two! -->
 
         <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -678,7 +697,6 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
         });
     </script>
 </head>
-    </body>
 </html>
 
 
