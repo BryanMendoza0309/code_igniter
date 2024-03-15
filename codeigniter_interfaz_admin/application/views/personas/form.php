@@ -285,7 +285,7 @@
                                     <div class="card-header"><i style="font-size: 2em;" class="fa fa-usd" aria-hidden="true"></i></div>
                                     <div class="card-body">
                                         <div class="form-row">
-                                            <div class="form-group col-4">
+                                            <div class="form-group col-3">
                                                 <label for="EntBancaria">Entidad Bancaria</label> <span  style="color: red;">*</span></label>
                                                 <select class="form-control" id="selectEntBancaria">
                                                   <option value="" disabled selected>Seleccionar...</option>
@@ -294,7 +294,43 @@
                                                 </select>
                                                 <div style="display:none;" id="errorEntBancaria" class="alert alert-danger" role="alert"></div>
                                             </div>
-                                            <div class="form-group col-4">
+                                            <div class="form-group col-3">
+                                                <label for="EntBancariaNombre">Nombre de Entidad Bancaria</label> <span  style="color: red;">*</span></label>
+                                                <select class="form-control" id="selectEntBancariaNomb">
+                                                    <option value="" disabled selected>Seleccionar...</option>
+                                                    <optgroup label="Bancos">
+                                                        <option value="Banco del Pacífico">Banco del Pacífico</option>
+                                                        <option value="Banco Pichincha">Banco Pichincha</option>
+                                                        <option value="Banco Guayaquil">Banco Guayaquil</option>
+                                                        <option value="Banco de Machala">Banco de Machala</option>
+                                                        <option value="Banco Internacional">Banco Internacional</option>
+                                                        <option value="Banco Bolivariano">Banco Bolivariano</option>
+                                                        <option value="Banco ProCredit">Banco ProCredit</option>
+                                                        <option value="Banco de Loja">Banco de Loja</option>
+                                                        <option value="Banco Progreso">Banco Progreso</option>
+                                                        <option value="Banco Solidario">Banco Solidario</option>
+                                                        <option value="Banco D-Miro">Banco D-Miro</option>
+                                                        <option value="Banco del Austro">Banco del Austro</option>
+                                                        <option value="Banco de Guayaquil Internacional">Banco de Guayaquil Internacional</option>
+                                                        <option value="Banco Amazonas">Banco Amazonas</option>
+                                                        <option value="Banco Finca">Banco Finca</option>
+                                                    </optgroup>
+                                                    <optgroup label="Cooperativas">
+                                                        <option value="Cooperativa de Ahorro y Crédito Riobamba Ltda.">Cooperativa de Ahorro y Crédito Riobamba Ltda.</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito Mushuc Runa">Cooperativa de Ahorro y Crédito Mushuc Runa</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito JEP">Cooperativa de Ahorro y Crédito JEP</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito Nacional Ltda.">Cooperativa de Ahorro y Crédito Nacional Ltda.</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito Cooprogreso Ltda.">Cooperativa de Ahorro y Crédito Cooprogreso Ltda.</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito Fernando Daquilema">Cooperativa de Ahorro y Crédito Fernando Daquilema</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito Mujeres Unidas">Cooperativa de Ahorro y Crédito Mujeres Unidas</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito CACPECO">Cooperativa de Ahorro y Crédito CACPECO</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito 29 de Octubre">Cooperativa de Ahorro y Crédito 29 de Octubre</option>
+                                                        <option value="Cooperativa de Ahorro y Crédito de la Mujer Ecuatoriana">Cooperativa de Ahorro y Crédito de la Mujer Ecuatoriana</option>
+                                                    </optgroup>
+                                                </select>
+                                                <div style="display:none;" id="errorEntBancariaNomb" class="alert alert-danger" role="alert"></div>
+                                            </div>
+                                            <div class="form-group col-3">
                                                 <label for="TpoCuenta">Tipo de Cuenta</label> <span  style="color: red;">*</span></label>
                                                 <select class="form-control" id="selectTpoCuenta">
                                                   <option value="" disabled selected>Seleccionar...</option>
@@ -303,7 +339,7 @@
                                                 </select>
                                                 <div style="display:none;" id="errorTpoCuenta" class="alert alert-danger" role="alert"></div>
                                             </div>
-                                            <div class="form-group col-4">
+                                            <div class="form-group col-3">
                                                 <label for="NoCuenta">No. de Cuenta</label> <span  style="color: red;">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" class="soloNumeros form-control" id="txtnocuenta">
@@ -657,6 +693,8 @@
                     formData.append("tloobtenido", $("#txttloobtenido").val());
 
                     formData.append("entbancaria", $("#selectEntBancaria :selected").val());
+                    formData.append("entbancariastr", $("#selectEntBancaria").find("option:selected").text());
+                	formData.append("entbancarianomb", $("#selectEntBancariaNomb :selected").val());
                     formData.append("tpocuenta", $("#selectTpoCuenta :selected").val());
                     formData.append("nocuenta", $("#txtnocuenta").val());
 
@@ -680,6 +718,7 @@
                     $("#errorNvelEducativo").hide();
                     $("#errorTloObtenido").hide();
                     $("#errorEntBancaria").hide();
+                    $("#errorEntBancariaNomb").hide();
                     $("#errorTpoCuenta").hide();
                     $("#errorNoCuenta").hide();
                     $("#errorPorcentaje").hide();
@@ -764,6 +803,10 @@
                                 if (data.mensaje.entbancaria) {
                                     $('#errorEntBancaria').html(data.mensaje.entbancaria);
                                     $("#errorEntBancaria").show();
+                                }
+                                if (data.mensaje.entbancarianomb) {
+                                    $('#errorEntBancariaNomb').html(data.mensaje.entbancarianomb);
+                                    $("#errorEntBancariaNomb").show();
                                 }
                                 if (data.mensaje.tpocuenta) {
                                     $('#errorTpoCuenta').html(data.mensaje.tpocuenta);

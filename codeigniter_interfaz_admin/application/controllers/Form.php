@@ -100,6 +100,7 @@ class Form extends CI_Controller {
             $this->form_validation->set_rules('tloobtenido', 'Titulo Obtenido', 'required');
 
             $this->form_validation->set_rules('entbancaria', 'Entidad Bancaria', 'required');
+            $this->form_validation->set_rules('entbancarianomb', 'Nombre de Entidad Bancaria', 'required');
             $this->form_validation->set_rules('tpocuenta', 'Tipo de Cuenta', 'required');
             $this->form_validation->set_rules('nocuenta', 'Numero de Cuenta', 'required');
 
@@ -134,6 +135,7 @@ class Form extends CI_Controller {
                     'nveleducativo'=> form_error('nveleducativo'),
                     'tloobtenido'=> form_error('tloobtenido'),
                     'entbancaria'=> form_error('entbancaria'),
+                    'entbancarianomb'=> form_error('entbancarianomb'),
                     'tpocuenta'=> form_error('tpocuenta'),
                     'nocuenta'=> form_error('nocuenta'),
                     'porcentaje'=> form_error('porcentaje'),
@@ -157,10 +159,14 @@ class Form extends CI_Controller {
                 $nacionalidad = $this->input->post('nacionalidad');
                 $direccion = $this->input->post('direccion');
                 $canton = $this->input->post('canton');
+                $cantonstr = $this->input->post('cantonstr');
                 $parroquia = $this->input->post('parroquia');
+                $parroquiastr = $this->input->post('parroquiastr');
                 $nveleducativo = $this->input->post('nveleducativo');
                 $tloobtenido = $this->input->post('tloobtenido');
                 $entbancaria = $this->input->post('entbancaria');
+                $entbancariastr = $this->input->post('entbancariastr');
+                $entbancarianomb = $this->input->post('entbancarianomb');
                 $tpocuenta = $this->input->post('tpocuenta');
                 $nocuenta = $this->input->post('nocuenta');
                 $discapacidad = $this->input->post('discapacidad');
@@ -204,9 +210,9 @@ class Form extends CI_Controller {
                     //$this->Consultas_m->update_tabla($tabla, $campo, $foto, $id);
                     
                     $this->guardarForm($cedula,$apellido,$nombre,$fchanacimiento,$genero,$estcivil,
-                    $email,$telefono,$movil1,$movil2,$nacionalidad,$direccion,$canton,$parroquia,
-                    $nveleducativo,$tloobtenido,$entbancaria,$tpocuenta,$nocuenta,$discapacidad,$porcdiscapacidad,
-                    $noconadis,$ruta_almacenamiento);
+                    $email,$telefono,$movil1,$movil2,$nacionalidad,$direccion,$canton,$cantonstr,$parroquia,
+                    $parroquiastr,$nveleducativo,$tloobtenido,$entbancaria,$entbancariastr,$entbancarianomb,
+                    $tpocuenta,$nocuenta,$discapacidad,$porcdiscapacidad,$noconadis,$ruta_almacenamiento);
                     //echo json_encode(['success' => true, 'mensaje' => 'Formulario procesado con éxito', 'data' => $ruta_almacenamiento]);
                     echo json_encode(['success' => true, 'mensaje' => ['Ok' => 'Formulario procesado con éxito', 'data' => $ruta_almacenamiento]]);
                 }
@@ -214,6 +220,7 @@ class Form extends CI_Controller {
             /**/
         }
     }
+
 
     public function hashpass($pass){
 		$opciones = [
@@ -223,49 +230,56 @@ class Form extends CI_Controller {
 	}
 
     public function guardarForm($cedula,$apellido,$nombre,$fchanacimiento,$genero,$estcivil,
-    $email,$telefono,$movil1,$movil2,$nacionalidad,$direccion,$canton,$parroquia,
-    $nveleducativo,$tloobtenido,$entbancaria,$tpocuenta,$nocuenta,$discapacidad,$porcdiscapacidad,
-    $noconadis,$ruta_almacenamiento){
-        $AddEmp=array(
-            "tbl_empleado_cedula"=>$cedula,
-            "tbl_empleado_cdlaizq"=>substr($cedula, -6),
-            "tbl_empleado_apellnomb"=>$apellido." ".$nombre,
-            "tbl_empleado_apellido"=>$apellido,
-            "tbl_empleado_nombres"=>$nombre,
-            "tbl_empleado_fchanac"=>$fchanacimiento,
-            "tbl_empleado_gnro"=>$genero,
-            "tbl_empleado_estcivil"=>$estcivil,
-            "tbl_empleado_email"=>$email,
-            "tbl_empleado_tlfnoConv"=>$telefono,
-            "tbl_empleado_tlfnoCelar"=>$movil1." / ".($movil2 != "") ? $movil2 : NULL,
-            "tbl_empleado_nacionalidad"=>$nacionalidad,
-            "tbl_empleado_direccion"=>$direccion,
-            "tbl_empleado_canton"=>$canton,
-            "tbl_empleado_parroquia"=>$parroquia,
-            "tbl_empleado_nveledu"=>$nveleducativo,
-            "tbl_empleado_tloobt"=>$tloobtenido,
-            "tbl_empleado_entbcrbanco"=>$entbancaria,
-            "tbl_empleado_tpocuenta"=>$tpocuenta,
-            "tbl_empleado_numcuenta"=>$nocuenta,
-            "tbl_empleado_discapacidad"=>$discapacidad,
-            "tbl_empleado_porcdisc"=>$porcdiscapacidad,
-            "tbl_empleado_numcndis"=>$noconadis,
-            "tbl_empleado_url"=>ltrim($ruta_almacenamiento,'./'),
-            "tbl_empleado_fcharegistro"=>date('Y-m-d')
-        );
-        $id_empleado = $this->InfDomicilio_model->instData($AddEmp);
-        if ($id_empleado !== false) {
-            $AddUsr=array(
-                "username"=>$cedula,
-                "nombres"=>$nombre,
-                "apellidos"=>$apellido,
-                "password"=>md5($cedula),
-                "tpo_usuario"=>'usuario',
-                "tbl_empleado_idtbl_empleado"=>$id_empleado
-            );
-            $this->InfDomicilio_model->instDatausr($AddUsr);
-        }
-    }
+	$email,$telefono,$movil1,$movil2,$nacionalidad,$direccion,$canton,$cantonstr,$parroquia,
+	$parroquiastr,$nveleducativo,$tloobtenido,$entbancaria,$entbancariastr,$entbancarianomb,
+	$tpocuenta,$nocuenta,$discapacidad,$porcdiscapacidad,$noconadis,$ruta_almacenamiento){
+		$movil1new = ($movil1 != "") ? $movil1 : NULL; 
+		$movil2new = ($movil2 != "") ? " / ".$movil2 : NULL;
+		
+		$AddEmp=array(
+			"tbl_empleado_cedula"=>$cedula,
+			"tbl_empleado_cdlaizq"=>substr($cedula, -6),
+			"tbl_empleado_apellnomb"=>strtoupper($apellido." ".$nombre),
+			"tbl_empleado_apellido"=>strtoupper($apellido),
+			"tbl_empleado_nombres"=>strtoupper($nombre),
+			"tbl_empleado_fchanac"=>$fchanacimiento,
+			"tbl_empleado_gnro"=>strtoupper($genero),
+			"tbl_empleado_estcivil"=>strtoupper($estcivil),
+			"tbl_empleado_email"=>$email,
+			"tbl_empleado_tlfnoConv"=>$telefono,
+			"tbl_empleado_tlfnoCelar"=>$movil1new . $movil2new,
+			"tbl_empleado_nacionalidad"=>strtoupper($nacionalidad),
+			"tbl_empleado_direccion"=>strtoupper($direccion),
+			"tbl_empleado_canton"=>$canton,
+			"tbl_empleado_cantonstr"=>strtoupper($cantonstr),
+			"tbl_empleado_parroquia"=>$parroquia,
+			"tbl_empleado_parroquiastr"=>strtoupper($parroquiastr),
+			"tbl_empleado_nveledu"=>strtoupper($nveleducativo),
+			"tbl_empleado_tloobt"=>strtoupper($tloobtenido),
+			"tbl_empleado_entbcrbanco"=>$entbancaria,
+			"tbl_empleado_entbcrbancostr"=>strtoupper($entbancariastr),
+			"tbl_empleado_entidadbancaria"=>strtoupper($entbancarianomb),
+			"tbl_empleado_tpocuenta"=>strtoupper($tpocuenta),
+			"tbl_empleado_numcuenta"=>$nocuenta,
+			"tbl_empleado_discapacidad"=>strtoupper($discapacidad),
+			"tbl_empleado_porcdisc"=>$porcdiscapacidad,
+			"tbl_empleado_numcndis"=>$noconadis,
+			"tbl_empleado_url"=>ltrim($ruta_almacenamiento,'./'),
+			"tbl_empleado_fcharegistro"=>date('Y-m-d')
+		);
+		$id_empleado = $this->InfDomicilio_model->instData($AddEmp);
+		if ($id_empleado !== false) {
+			$AddUsr=array(
+				"username"=>$cedula,
+				"nombres"=>$nombre,
+				"apellidos"=>$apellido,
+				"password"=>md5($cedula),
+				"tpo_usuario"=>'usuario',
+				"tbl_empleado_idtbl_empleado"=>$id_empleado
+			);
+			$this->InfDomicilio_model->instDatausr($AddUsr);
+		}
+	}
 
     // Función de callback para validar el archivo
     public function validar_archivo($str) {
